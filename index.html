@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Cerner Sandbox App;</title>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./src/css/example-smart-app.css"
+    />
+
+    <!--***** Disabled loading bar for HTML development *****-->
+    <!--
+          Temporarily disable cerner-smart-embeddable-lib
+        <link rel='stylesheet' type='text/css' href='./lib/css/cerner-smart-embeddable-lib-1.0.0.min.css'>
+        -->
+  </head>
+  <body style="background-color: navy">
+    <div class="child">
+    <h1>Health Records</h1>
+      <nav class="navbar">
+        <div class="navbar_container">
+          <img src="https://media-exp1.licdn.com/dms/image/C560BAQEgrKE84OOUOg/company-logo_200_200/0/1635774256560?e=2147483647&v=beta&t=ZDyFJmyvDfblW7WkDdIMrBLMR4os7OHIvW1Ww6qiJNs" id="navbar_logo"></a>
+          <ul class="navbar_menu">
+            <li class="navbar_item">
+              <!--***** Navbar link to immunizations *****-->
+              <a href="https://lorisnikolov55.github.io/smart-on-fhir-tutorial/example-smart-app/immunizations.html" class="navbar_links">My Immunizations</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div id="errors"></div>
+      <div id="loading" class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+      <h2>Patient</h2>
+      <table>
+        <tr>
+          <th>First Name:</th>
+          <td id="fname"></td>
+        </tr>
+        <tr>
+          <th>Last Name:</th>
+          <td id="lname"></td>
+        </tr>
+        <tr>
+          <th>Gender:</th>
+          <td id="gender"></td>
+        </tr>
+        <tr>
+          <th>Date of Birth:</th>
+          <td id="birthdate"></td>
+        </tr>
+      </table>
+      <!--***** Removing immunizations from index.html and moving them to immunizations.html *****-->
+    </div>
+    <!-- Required JS files to enable this page to embed within an MPage -->
+    <!--
+          Temporarily disable cerner-smart-embeddable-lib
+          <script src='https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js'></script>
+          <script src='./lib/js/cerner-smart-embeddable-lib-1.0.0.min.js'></script>
+        -->
+
+    <!-- Application-level javascript-->
+    <script src="./src/js/example-smart-app.js"></script>
+
+    <!-- FHIR Client JS Library -->
+    <script src="./lib/js/fhir-client-v0.1.12.js"></script>
+
+    <!-- Prevent session bleed caused by single threaded embedded browser and sessionStorage API -->
+    <!-- https://github.com/cerner/fhir-client-cerner-additions -->
+    <script src="./lib/js/fhir-client-cerner-additions-1.0.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!--***** Disabled script for HTML development *****-->
+    <script>
+      extractData().then(
+        //Display Patient Demographics and Observations if extractData was success
+        function (p) {
+          drawVisualization(p);
+        },
+
+        //Display 'Failed to call FHIR Service' if extractData failed
+        function () {
+          $("#loading").hide();
+          $("#errors").html("<p> Failed to call FHIR Service </p>");
+        }
+      );
+    </script>
+  </body>
+</html>
