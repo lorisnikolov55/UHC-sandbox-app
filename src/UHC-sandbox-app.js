@@ -12,7 +12,7 @@
           var patient = smart.patient;
           var pt = patient.read();
           var patient = smart.patient.api.fetchAll({
-            type: 'Observation',
+            type: 'Patient',
           });
   
           $.when(pt).fail(onError);
