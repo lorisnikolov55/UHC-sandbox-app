@@ -14,11 +14,12 @@
     <!-- FHIR Client JS Library -->
     <script src='./lib/fhir-client-v0.1.12.js'></script>
     <script>
-      FHIR.oauth2.authorize({
+      response = FHIR.oauth2.authorize({
         client_id: "ad7331f7-7cea-42b5-931a-85b115340836",
         scope:
           "patient/Patient.read launch/patient online_access openid profile",
       });
+      console.log(response);
     </script>
     <div class="spinner">
       <div class="bounce1"></div>
