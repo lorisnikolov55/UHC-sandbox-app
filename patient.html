@@ -12,6 +12,7 @@
     <script>
         var myApp = {}
 
+        console.log("Hello world, lets try fetch the faux patient data!")
         FHIR.oauth2.ready()
         .then(function(client){
             myApp.smart = client
