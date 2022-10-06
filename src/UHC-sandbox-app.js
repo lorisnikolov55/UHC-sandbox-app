@@ -1,7 +1,7 @@
 async function requestPatientData() {
-  const base_url =
-    "https://sandbox.fhir.flex.optum.com/R4";
-  var patient = await fetch(base_url + "/Patient/" + myApp.smart.patient.id, {
+  const base_url = "https://sandbox.authz.flex.optum.com/"
+    "";
+  var patient = await fetch(base_url + "Patient", {
     headers: {
       Accept: "application/json+fhir",
       Authorization: "Bearer " + myApp.smart.state.tokenResponse.access_token,
