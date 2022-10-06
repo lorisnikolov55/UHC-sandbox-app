@@ -5,6 +5,7 @@ async function requestPatientData() {
     headers: {
       Accept: "application/json+fhir",
       Authorization: "Bearer " + myApp.smart.state.tokenResponse.access_token,
+      Authorization: "Client Secret " + "61914843-fc60-4eec-9cfd-13fc2935b083",
     },
   }).then(function (data) {
     return data;
