@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="./lib/fhir-client.js"></script>
+    <script src="lib/fhir-client.js"></script>
     <title>UHC Sandbox App</title>
   </head>
   <body>
@@ -14,7 +14,8 @@
       FHIR.oauth2.authorize({
         client_id: "ad7331f7-7cea-42b5-931a-85b115340836",
         scope:
-          "patient/Patient.read launch/patient online_access openid profile fhirUser",
+          //"patient/Patient.read launch/patient online_access openid profile fhirUser",
+          "patient/Patient.read",
         redirect_uri:
           "https://lorisnikolov55.github.io/UHC-sandbox-app/patient.html",
       });
