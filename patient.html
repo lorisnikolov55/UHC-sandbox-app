@@ -11,14 +11,14 @@
   <script src="./src/UHC-sandbox-app.js"></script>
   <body>
     <script>
-        var myApp = {}
+      var myApp = {};
 
-        console.log("Hello world, lets try fetch the faux patient data!")
-        FHIR.oauth2.ready()
-        .then(function(client){
-            myApp.smart = client
-            requestPatientData()
-        })
+      console.log("Hello world, lets try fetch the faux patient data!");
+      FHIR.oauth2.ready().then(function (client) {
+        console.log(client)
+        //myApp.smart = client;
+        //requestPatientData();
+      });
     </script>
   </body>
 </html>
