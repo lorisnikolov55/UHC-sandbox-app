@@ -29,11 +29,7 @@ async function requestAccessToken() {
 
   fetch(req)
     .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Bad HTTP stuff!");
-      }
+      return response.json();
     })
     .then((jsonData) => {
       console.log(jsonData);
