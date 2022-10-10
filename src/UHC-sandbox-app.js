@@ -13,3 +13,9 @@ async function requestPatientData() {
   var patientData = await patient.json();
   console.log(patientData);
 }
+
+/*async function requestAccessToken() {
+  const base_url = "https://sandbox.authz.flex.optum.com/"
+  
+  return accessToken
+}*/
