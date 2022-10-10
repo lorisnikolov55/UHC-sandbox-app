@@ -14,25 +14,6 @@ async function requestPatientData() {
   console.log(patientData);
 }
 
-async function oauth2Flow() {
-  const config = require("config");
-  const fetch = require("node-fetch");
-
-  const contentType = config.get("Content-Type");
-  const accept = config.get("Accept");
-
-  const authURI = "https://sandbox.authz.flex.optum.com/oauth/authorize";
-  const tokenURI = "https://sandbox.authz.flex.optum.com/oauth/token";
-  const patientURI = "https://sandbox.fhir.flex.optum.com/R4/Patient";
-
-  // ------ auth ------- //
-  exports.auth = async (req, res) => {
-    const error = req.session.error;
-    delete req.session.error;
-    res.redirect(authURI);
-  };
-}
-
 /*async function requestAccessToken() {
   const base_uri = "https://sandbox.authz.flex.optum.com/";
   const auth_uri = base_uri + "oauth/authorize";
