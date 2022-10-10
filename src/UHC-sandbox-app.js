@@ -24,7 +24,7 @@ async function requestAccessToken() {
 
   let req = new Request(full_auth_uri, {
     method: "GET",
-    mode: "cors",
+    mode: "no-cors",
   });
 
   fetch(req)
