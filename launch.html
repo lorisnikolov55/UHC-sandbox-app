@@ -13,11 +13,7 @@
 
     <script>
       var accessToken;
-
-      requestAccessToken().then(function (response) {
-        response = accessToken
-        console.log(response)
-      })
+      requestAccessToken()
       /*FHIR.oauth2.authorize({
         client_id: "ad7331f7-7cea-42b5-931a-85b115340836",
         scope:
