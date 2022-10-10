@@ -20,7 +20,23 @@ async function requestAccessToken() {
   const full_auth_url =
     auth_url +
     "?response_type=code&client_id=ad7331f7-7cea-42b5-931a-85b115340836&state=1234zyx&scope=patient%2FPatient.read&redirect_uri=https%3A%2F%2Florisnikolov55.github.io%2FUHC-sandbox-app%2Fpatient.html";
-  console.log(full_auth_url)
-  
+  console.log(full_auth_url);
+
+  let req = new Request(uri, {
+    method: "GET",
+    mode: "cors",
+  });
+
+  fetch(req)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Bad HTTP stuff!");
+      }
+    })
+    .then((jsonData) => {
+      console.log(jsonData);
+    });
   //return accessToken
 }
