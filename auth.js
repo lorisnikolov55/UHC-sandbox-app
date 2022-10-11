@@ -9,7 +9,9 @@ var credentials = {
     tokenPath: "/oauth/token",
   },
 };
-var oauth2 = require("simple-oauth2").create(credentials);
+//var oauth2 = require("simple-oauth2").create(credentials);
+
+var oauth2 = create(credentials);
 
 var redirectUri =
   "https://lorisnikolov55.github.io/UHC-sandbox-app/patient.html";
