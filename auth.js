@@ -53,6 +53,9 @@ function refreshAccessToken(refreshToken, callback) {
   tokenObj.refresh(callback);
 }
 
-exports.getAuthUrl = getAuthUrl;
-exports.getTokenFromCode = getTokenFromCode; 
-exports.refreshAccessToken = refreshAccessToken;
+const _getAuthUrl = getAuthUrl;
+export { _getAuthUrl as getAuthUrl };
+const _getTokenFromCode = getTokenFromCode;
+export { _getTokenFromCode as getTokenFromCode }; 
+const _refreshAccessToken = refreshAccessToken;
+export { _refreshAccessToken as refreshAccessToken };
