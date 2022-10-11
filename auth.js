@@ -11,7 +11,7 @@ var credentials = {
 };
 //var oauth2 = require("simple-oauth2").create(credentials);
 
-var oauth2 = create(credentials);
+var oauth2 = credentials.create()
 
 var redirectUri =
   "https://lorisnikolov55.github.io/UHC-sandbox-app/patient.html";
