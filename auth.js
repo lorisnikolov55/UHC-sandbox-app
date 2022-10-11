@@ -9,9 +9,8 @@ var credentials = {
     tokenPath: "/oauth/token",
   },
 };
-//var oauth2 = require("simple-oauth2").create(credentials);
 
-var oauth2 = credentials.create()
+var oauth2 = require("simple-oauth2").create(credentials);
 
 var redirectUri =
   "https://lorisnikolov55.github.io/UHC-sandbox-app/patient.html";
@@ -54,6 +53,9 @@ function refreshAccessToken(refreshToken, callback) {
   tokenObj.refresh(callback);
 }
 
-exports.getAuthUrl = getAuthUrl;
-exports.getTokenFromCode = getTokenFromCode;
-exports.refreshAccessToken = refreshAccessToken;
+const _getAuthUrl = getAuthUrl;
+export { _getAuthUrl as getAuthUrl };
+const _getTokenFromCode = getTokenFromCode;
+export { _getTokenFromCode as getTokenFromCode };
+const _refreshAccessToken = refreshAccessToken;
+export { _refreshAccessToken as refreshAccessToken };
