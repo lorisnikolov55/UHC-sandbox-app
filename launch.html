@@ -7,7 +7,7 @@
     <script src="lib/fhir-client.js"></script>
     <title>UHC Sandbox App</title>
   </head>
-  <!--<script src="src/auth.js"></script>-->
+  <script src="src/auth.js"></script>
   <body>
     <p>Hello, you have reached the page "launch.html"</p>
     <script>
@@ -22,6 +22,7 @@
           tokenPath: "/oauth/token",
         },
       };
+
       var oauth2 = require("simple-oauth2").create(credentials);
 
       var redirectUri =

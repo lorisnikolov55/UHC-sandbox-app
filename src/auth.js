@@ -1,4 +1,4 @@
-/*var credentials = {
+var credentials = {
   client: {
     id: "ad7331f7-7cea-42b5-931a-85b115340836",
     secret: "61914843-fc60-4eec-9cfd-13fc2935b083",
@@ -54,4 +54,4 @@ function refreshAccessToken(refreshToken, callback) {
 
 exports.getAuthUrl = getAuthUrl;
 exports.getTokenFromCode = getTokenFromCode;
-exports.refreshAccessToken = refreshAccessToken;*/
+exports.refreshAccessToken = refreshAccessToken;
