@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "require": "^2.4.20",
     "simple-oauth2": "^4.3.0"
   }
 }
