@@ -7,30 +7,69 @@
     <script src="lib/fhir-client.js"></script>
     <title>UHC Sandbox App</title>
   </head>
-  <script src="src/UHC-sandbox-app.js"></script>
+  <!--<script src="src/auth.js"></script>-->
   <body>
     <p>Hello, I am the page "launch.html"</p>
-
     <script>
-      var requestOptions = {
-        method: "GET",
-        redirect: "follow",
+      var credentials = {
+        client: {
+          id: "ad7331f7-7cea-42b5-931a-85b115340836",
+          secret: "61914843-fc60-4eec-9cfd-13fc2935b083",
+        },
+        auth: {
+          tokenHost: "https://sandbox.authz.flex.optum.com",
+          authorizePath: "/oauth/authorize",
+          tokenPath: "/oauth/token",
+        },
       };
+      var oauth2 = require("simple-oauth2").create(credentials);
 
-      fetch(
-        "https://sandbox.authz.flex.optum.com/oauth/authorize?response_type=code&client_id=ad7331f7-7cea-42b5-931a-85b115340836&state=1234zyx&scope=patient%2FPatient.read&redirect_uri=https%3A%2F%2Florisnikolov55.github.io%2FUHC-sandbox-app%2Fpatient.html",
-        requestOptions
-      )
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .catch((error) => console.log("error", error));
-      /*FHIR.oauth2.authorize({
-        client_id: "ad7331f7-7cea-42b5-931a-85b115340836",
-        scope:
-          "patient/Patient.read launch/patient online_access openid profile fhirUser",
-        redirect_uri:
-          "https://lorisnikolov55.github.io/UHC-sandbox-app/patient.html",
-      });*/
+      var redirectUri =
+        "https://lorisnikolov55.github.io/UHC-sandbox-app/patient.html";
+
+      // The scopes the app requires
+      var scopes = ["patient/Patient.read"];
+
+      function getAuthUrl() {
+        var returnVal = oauth2.authorizationCode.authorizeURL({
+          redirect_uri: redirectUri,
+          scope: scopes.join(" "),
+        });
+        console.log("Generated auth url: " + returnVal);
+        return returnVal;
+      }
+
+      function getTokenFromCode(auth_code, callback, response) {
+        var token;
+        oauth2.authorizationCode.getToken(
+          {
+            code: auth_code,
+            redirect_uri: redirectUri,
+            scope: scopes.join(" "),
+          },
+          function (error, result) {
+            if (error) {
+              console.log("Access token error: ", error.message);
+              callback(response, error, null);
+            } else {
+              token = oauth2.accessToken.create(result);
+              console.log("Token created: ", token.token);
+              callback(response, null, token);
+            }
+          }
+        );
+      }
+
+      function refreshAccessToken(refreshToken, callback) {
+        var tokenObj = oauth2.accessToken.create({
+          refresh_token: refreshToken,
+        });
+        tokenObj.refresh(callback);
+      }
+
+      exports.getAuthUrl = getAuthUrl;
+      exports.getTokenFromCode = getTokenFromCode;
+      exports.refreshAccessToken = refreshAccessToken;
     </script>
   </body>
 </html>
