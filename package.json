@@ -1,0 +1,26 @@
+{
+  "name": "uhc-sandbox-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lorisnikolov55/UHC-sandbox-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lorisnikolov55/UHC-sandbox-app/issues"
+  },
+  "homepage": "https://github.com/lorisnikolov55/UHC-sandbox-app#readme",
+  "dependencies": {
+    "simple-oauth2": "^4.3.0"
+  }
+}
