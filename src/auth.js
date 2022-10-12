@@ -1,4 +1,4 @@
-import AuthorizationCode from "simple-oauth2";
+import AuthorizationCode from "../node_modules/simple-oauth2";
 //const { AuthorizationCode } = require("simple-oauth2");
 const oauth2 = new AuthorizationCode({
   client: {
