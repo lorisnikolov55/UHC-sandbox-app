@@ -22,11 +22,7 @@
         },
       };
 
-      import {
-        ClientCredentials,
-        ResourceOwnerPassword,
-        AuthorizationCode,
-      } from "simple-oauth2";
+      const { ClientCredentials, ResourceOwnerPassword, AuthorizationCode } = require('simple-oauth2');
 
       async function run() {
         const client = new AuthorizationCode(config);
