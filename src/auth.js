@@ -23,6 +23,7 @@ async function run() {
 
   // Redirect example using Express (see http://expressjs.com/api.html#res.redirect)
   res.redirect(authorizationUri);
+  console.log(authorizationUri)
 
   const tokenParams = {
     code: "auth_code",
