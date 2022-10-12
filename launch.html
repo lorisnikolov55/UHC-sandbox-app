@@ -5,13 +5,76 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="lib/fhir-client.js"></script>
-    <script src="./node_modules/"></script>
+    <script src="./node_modules/simple-oauth2/"></script>
     <title>UHC Sandbox App</title>
   </head>
   <body>
     <script>
       // Implement Oauth2 flow
-    
+      "use strict";
+
+      const createApplication = require(".");
+      const { AuthorizationCode } = require("..");
+
+      createApplication(({ app, callbackUrl }) => {
+        const secret = "61914843-fc60-4eec-9cfd-13fc2935b083";
+
+        const client = new AuthorizationCode({
+          client: {
+            id: "d7331f7-7cea-42b5-931a-85b115340836",
+            secret,
+          },
+          options: {
+            authorizationMethod: "body",
+          },
+          auth: {
+            authorizeHost: "https://sandbox.authz.flex.optum.com",
+            authorizePath: "/oauth/authorize",
+            tokenHost: "https://sandbox.authz.flex.optum.com",
+            tokenPath: "/oauth/token",
+          },
+        });
+
+        // Authorization uri definition
+        const authorizationUri = client.authorizeURL({
+          redirect_uri: "https://lorisnikolov55.github.io/UHC-sandbox-app/patient.html",
+          scope: ["patient/Patient.read"],
+          state: "1234zyx",
+        });
+
+        // Initial page redirecting to Github
+        app.get("/oauth/linkedin", (req, res) => {
+          console.log(authorizationUri);
+          res.redirect(authorizationUri);
+        });
+
+        // Callback service parsing the authorization token and asking for the access token
+        app.get("/oauth/linkedin/callback", async (req, res) => {
+          const { code } = req.query;
+          const options = {
+            code,
+            redirect_uri: callbackUrl,
+            scope: "patient/Patient.read",
+          };
+
+          try {
+            const accessToken = await client.getToken(options);
+
+            console.log("The resulting token: ", accessToken.token);
+
+            return res.status(200).json(accessToken.token);
+          } catch (error) {
+            console.error("Access Token Error", error.message);
+            return res.status(500).json("Authentication failed");
+          }
+        });
+
+        app.get("/", (req, res) => {
+          res.send(
+            'Hello<br><a href="/oauth/linkedin">Log in with LinkedIn</a>'
+          );
+        });
+      });
     </script>
   </body>
 </html>
