@@ -10,7 +10,8 @@
   </head>
   <body>
     <script>
-      const { AuthorizationCode } = require("simple-oauth2");
+      import AuthorizationCode from 'simple-oauth2';
+      //const { AuthorizationCode } = require("simple-oauth2");
       const oauth2 = new AuthorizationCode({
         client: {
           id: "ad7331f7-7cea-42b5-931a-85b115340836",
