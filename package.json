@@ -22,6 +22,7 @@
   "homepage": "https://github.com/lorisnikolov55/UHC-sandbox-app#readme",
   "dependencies": {
     "module": "^1.2.5",
+    "passport-oauth2": "^1.6.1",
     "simple-oauth2": "^4.3.0"
   }
 }
