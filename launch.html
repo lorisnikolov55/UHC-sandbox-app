@@ -11,19 +11,24 @@
   <body>
     <script>
       // Implement Oauth2 flow
-      var requestOptions = {
-        method: "GET",
-        redirect: "follow",
-      };
+      passport.use(
+        new OAuth2Strategy(
+          {
+            authorizationURL: "https://sandbox.authz.flex.optum.com/oauth/authorize",
+            tokenURL: "https://sandbox.authz.flex.optum.com/oauth/token",
+            clientID: "ad7331f7-7cea-42b5-931a-85b115340836",
+            clientSecret: "61914843-fc60-4eec-9cfd-13fc2935b083",
+            callbackURL: "https://lorisnikolov55.github.io/UHC-sandbox-app/patient.html",
+          },
+          function (accessToken, refreshToken, profile, cb) {
+            User.findOrCreate({ exampleId: profile.id }, function (err, user) {
+              return cb(err, user);
+            });
+          }
+        )
+      );
 
-      fetch(
-        "https://sandbox.authz.flex.optum.com/oauth/authorize?response_type=code&client_id=ad7331f7-7cea-42b5-931a-85b115340836&state=1234zyx&scope=patient%2FPatient.read&redirect_uri=https%3A%2F%2Florisnikolov55.github.io%2FUHC-sandbox-app%2Fpatient.html",
-        { mode: "no-cors" },
-        requestOptions
-      )
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .catch((error) => console.log("error", error));
+      passport.authenticate('oauth2');
     </script>
   </body>
 </html>
