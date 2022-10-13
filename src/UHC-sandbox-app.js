@@ -21,6 +21,6 @@ async function getAccessCode() {
     return data
   });
 
-  /*var responseData = await response.json();
-  console.log(responseData)*/
+  var responseData = await response.json();
+  console.log(responseData)
 }
