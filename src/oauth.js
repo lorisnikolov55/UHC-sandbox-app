@@ -14,7 +14,7 @@ const config = {
     const client = new AuthorizationCode(config);
    
     const authorizationUri = client.authorizeURL({
-      redirect_uri: 'https://lorisnikolov55.github.io/UHC-sandbox-app/patient.html',
+      redirect_uri: 'https://sandbox.authz.flex.optum.com/oauth/authorize',
       scope: 'patient/Patient.read',
       state: '1234zyx'
     });
