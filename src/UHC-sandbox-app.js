@@ -13,7 +13,3 @@ async function requestPatientData() {
   var patientData = await patient.json();
   console.log(patientData);
 }
-
-function oauth2 () {
-  
-}
