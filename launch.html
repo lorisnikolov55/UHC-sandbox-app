@@ -4,32 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="lib/fhir-client.js"></script>
     <script src="src/UHC-sandbox-app.js"></script>
-    <script src="./node_modules/passport-oauth2/lib/index.js"></script>
     <title>UHC Sandbox App</title>
   </head>
   <body>
     <script>
-      // Implement Oauth2 flow
-      passport.use(
-        new OAuth2Strategy(
-          {
-            authorizationURL: "https://sandbox.authz.flex.optum.com/oauth/authorize",
-            tokenURL: "https://sandbox.authz.flex.optum.com/oauth/token",
-            clientID: "ad7331f7-7cea-42b5-931a-85b115340836",
-            clientSecret: "61914843-fc60-4eec-9cfd-13fc2935b083",
-            callbackURL: "https://lorisnikolov55.github.io/UHC-sandbox-app/patient.html",
-          },
-          function (accessToken, refreshToken, profile, cb) {
-            User.findOrCreate({ exampleId: profile.id }, function (err, user) {
-              return cb(err, user);
-            });
-          }
-        )
-      );
-
-      passport.authenticate('oauth2');
+      const simpleOauth2 = require('simple-oauth2')
     </script>
   </body>
 </html>
